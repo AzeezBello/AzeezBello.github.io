@@ -1,0 +1,22 @@
+{
+  "name": "azeezbello.github.io",
+  "version": "1.0.0",
+  "description": "CurrencyConverter",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AzeezBello/AzeezBello.github.io.git"
+  },
+  "author": "Azeez Bello",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AzeezBello/AzeezBello.github.io/issues"
+  },
+  "homepage": "https://github.com/AzeezBello/AzeezBello.github.io#readme",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
