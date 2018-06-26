@@ -15,7 +15,7 @@
   "bugs": {
     "url": "https://github.com/AzeezBello/AzeezBello.github.io/issues"
   },
-  "homepage": "https://github.com/AzeezBello/AzeezBello.github.io#readme",
+  "homepage": "https://github.com/AzeezBello/AzeezBello.github.io",
   "dependencies": {
     "cookie-parser": "^1.4.3",
     "express": "^4.16.3",
