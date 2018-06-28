@@ -7,8 +7,7 @@ function convertCurrency(amount, fromCurrency, toCurrency, cb) {
   toCurrency = encodeURIComponent(toCurrency);
   var query = fromCurrency + '_' + toCurrency;
 
-  var url = 'https://www.currencyconverterapi.com/api/v5/convert?q='
-            + query + '&compact=ultra&apiKey=' + apiKey;
+  var url = 'https://free.currencyconverterapi.com/api/v5/convert?q=USD_PHP&compact=y';
 
   https.get(url, function(res){
       var body = '';
@@ -21,7 +20,10 @@ function convertCurrency(amount, fromCurrency, toCurrency, cb) {
           try {
             var jsonObj = JSON.parse(body);
 
+            console.log(jsonObj);
+
             var val = jsonObj[query];
+            console.log(val.val);
             if (val) {
               var total = val * amount;
               cb(null, Math.round(total * 100) / 100);
@@ -42,8 +44,6 @@ function convertCurrency(amount, fromCurrency, toCurrency, cb) {
 }
 
 //uncomment to test
-/*
-convertCurrency(10, 'USD', 'PHP', function(err, amount) {
+convertCurrency(108, 'USD', 'PHP', function(err, amount) {
   console.log(amount);
 });
-*/
