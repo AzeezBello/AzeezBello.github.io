@@ -1,25 +1,141 @@
 <!DOCTYPE html>
-<div class="container">
-        <div class="row justify-content-md-center">
-          <div class="col col-lg-2">
-                <input type="text" value="1" name="CURR_FR_VAL" id="CURR_FR_VAL" placeholder="Enter amount" />
-          </div>
-          <div class="col-md-auto">
-            Variable width content
-          </div>
-          <div class="col col-lg-2">
-            3 of 3
-          </div>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#000000">
+    <!--
+      manifest.json provides metadata used when your web app is added to the
+      homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
+    -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
+    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <title>Currency Converter</title>
+    
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
+    <!-- Custom styles for this template -->
+    <link href="css/landing-page.min.css" rel="stylesheet">
+    <!--<link rel="stylesheet" href="css/main.css">-->
+  </head>
+  <body>
+
+  
+
+  <!-- Masthead -->
+  <header class="masthead text-white text-center">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-9 mx-auto">
+          <h1 class="mb-5">Welcome to your one stop Currency Converter!</h1>
         </div>
-        <div class="row">
-          <div class="col">
-            1 of 3
-          </div>
-          <div class="col-md-auto">
-            Variable width content
-          </div>
-          <div class="col col-lg-2">
-            3 of 3
-          </div>
+        <div class="col-xl-9 mx-auto">
+          <form>
+            <div class="row justify-content-md-center form-row">
+             
+                  
+             
+                  
+            </div>
+          </form>
         </div>
       </div>
+    </div>
+  </header>
+
+  
+  
+  
+ 
+
+
+  <script type="text/javascript">
+  var https = require('https');
+
+function convertCurrency(amount, fromCurrency, toCurrency, cb) {
+  var apiKey = 'your-api-key-here';
+
+  fromCurrency = encodeURIComponent(fromCurrency);
+  toCurrency = encodeURIComponent(toCurrency);
+  var query = fromCurrency + '_' + toCurrency;
+
+  var url = 'https://free.currencyconverterapi.com/api/v5/convert?q=USD_PHP&compact=y';
+
+  https.get(url, function(res){
+      var body = '';
+
+      res.on('data', function(chunk){
+          body += chunk;
+      });
+
+      res.on('end', function(){
+          try {
+            var jsonObj = JSON.parse(body);
+
+            console.log(jsonObj);
+
+            var val = jsonObj[query];
+            console.log(val.val);
+            if (val) {
+              var total = val * amount;
+              cb(null, Math.round(total * 100) / 100);
+            } else {
+              var err = new Error("Value not found for " + query);
+              console.log(err);
+              cb(err);
+            }
+          } catch(e) {
+            console.log("Parse error: ", e);
+            cb(e);
+          }
+      });
+  }).on('error', function(e){
+        console.log("Got an error: ", e);
+        cb(e);
+  });
+}
+
+//uncomment to test
+convertCurrency(108, 'USD', 'PHP', function(err, amount) {
+  console.log(amount);
+});
+  
+  </script>
+  <script type="text/javascript">
+var addthisScript = document.createElement('script');
+addthisScript.setAttribute('src', '//s7.addthis.com/js/300/addthis_widget.js#domready=1')
+document.body.appendChild(addthisScript)
+</script>
+
+  <script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('/sw.js').then(function(registration) {
+      // Registration was successful
+      console.log('ServiceWorker registration successful with scope: ', registration.scope);
+    }, function(err) {
+      // registration failed :(
+      console.log('ServiceWorker registration failed: ', err);
+    });
+  });
+}
+
+</script>
+  </body>
+</html>
