@@ -2,7 +2,7 @@
   "name": "AzeezBello",
   "scope": "/",
   "icons": [{
-    "src": "/imgs/icon.png",
+    "src": "/imgs/favicon.png",
     "sizes": "144x144",
     "type": "image/png"
   }],
