@@ -1,6 +1,7 @@
 
 
 function convertCurrency(){
+ debugger
     let from = document.getElementById("from")[0].value;
     let to = document.getElementById("to")[0].value;
     let fromAmount = document.getElementById("fromAmount").value;
