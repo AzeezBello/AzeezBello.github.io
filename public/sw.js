@@ -18,6 +18,14 @@ self.addEventListener('install', function(event){
 })
 self.addEventListener('fetch', function(event){
   event.respondWith(
+    caches.match(event.request).then(function(response){
+      if(response)return response;
+      return fetch(event.request);
+    })
+  );
+});
+self.addEventListener('fetch', function(event){
+  event.respondWith(
     fetch(event.request).then(function(response){
       if (response.status==404){
         return fetch('/img/bg-showcase-2.jpg');
