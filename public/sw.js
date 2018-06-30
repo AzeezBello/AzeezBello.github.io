@@ -1,7 +1,5 @@
-self.addEventListener('install', function(event){
-  event.waitUntil(
-    caches.open('currency-converter-v1').then(function(cache){
-      return cache.addAll([
+var CACHE_NAME = 'currency-converter-v1';
+var urlsToCache =[
         '/',
         'css/landing-page.min.css',
         'img/',
@@ -12,27 +10,15 @@ self.addEventListener('install', function(event){
         'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js',
         'https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js'
     
-      ]);
-    })
-  );
-})
-self.addEventListener('fetch', function(event){
-  event.respondWith(
-    caches.match(event.request).then(function(response){
-      if(response)return response;
-      return fetch(event.request);
-    })
+      ];
+
+self.addEventListener('install', function(event) {
+  // Perform install steps
+  event.waitUntil(
+    caches.open(CACHE_NAME)
+      .then(function(cache) {
+        console.log('Opened cache');
+        return cache.addAll(urlsToCache);
+      })
   );
 });
-self.addEventListener('fetch', function(event){
-  event.respondWith(
-    fetch(event.request).then(function(response){
-      if (response.status==404){
-        return fetch('/img/bg-showcase-2.jpg');
-      }
-      return response;
-    }).catch(function(){
-      return new Response("Uh oh, that totally failed!");
-    })
-  );
-});   
