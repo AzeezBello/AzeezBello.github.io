@@ -1,4 +1,4 @@
-importScripts('/cache-polyfill.js');
+
 
 
 self.addEventListener('install', function(e) {
@@ -12,8 +12,30 @@ self.addEventListener('install', function(e) {
        '/css/css/landing-page.min.css',
        '/js/currency-converter.js',
        '/img/',
-       '/sounds/airhorn.mp3'
+       
      ]);
    })
  );
 });
+
+self.addEventListener('fetch', function(event) {
+
+  console.log(event.request.url);
+  
+  });
+  
+self.addEventListener('fetch', function(event) {
+
+  console.log(event.request.url);
+  
+  event.respondWith(
+  
+  caches.match(event.request).then(function(response) {
+  
+  return response || fetch(event.request);
+  
+  })
+  
+  );
+  
+  });
