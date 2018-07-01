@@ -804,7 +804,35 @@
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="/js/currency-converter.js"></script>
+  <!-- Custom Javascript-->
+  <!--<script src="/js/currency-converter.js"></script>-->
+
+  <!--idb Script-->
+  <script src="https://github.com/jakearchibald/idb/blob/master/lib/idb.js"></script>
+
+  
+  <script>
+function convertCurrency(){
+
+//debugger
+   let from = document.getElementById("from").value;
+   let to = document.getElementById("to").value;
+   let fromAmount = document.getElementById("amount").value;
+   let query = from+"_"+to;
+   // let toAmount = document.getElementById("toAmount");
+   // https://free.currencyconverterapi.com/api/v5/convert?q=USD_PHP,PHP_USD&compact=ultra
+   let urlconvert= 'https://free.currencyconverterapi.com/api/v5/convert?q=' + query + '&compact=ultra';
+   fetch(urlconvert).then(response=>{
+       return response.json();   
+}).then(rates=> {
+    
+    let amount = fromAmount * rates[query];
+    document.getElementById("result").value = amount.toFixed(2);
+   //  console.log(amount)
+});
+}
+// convertCurrency();  
+</script>
         
 
  <script>
