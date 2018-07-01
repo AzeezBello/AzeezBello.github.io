@@ -17,12 +17,17 @@ event.waitUntil(
      './index.html',
      './index.html?homescreen=1',
      './?homescreen=1',
+     './vendor/bootstrap/css/bootstrap.min.css',
      './css/landing-page.css',
      '/img/bg-masthead.jpg',
      '/img/bg-showcase-1.jpg',
      '/img/bg-showcase-2.jpg',
      '/img/bg-showcase-3.jpg',
      './js/currency-converter.js',
+     './vendor/jquery/jquery.min.js',
+     './vendor/bootstrap/js/bootstrap.bundle.min.js',
+     './js/currency-converter.js',
+
      
      
    ]);
