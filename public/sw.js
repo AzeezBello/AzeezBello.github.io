@@ -23,10 +23,12 @@ event.waitUntil(
      '/img/bg-showcase-1.jpg',
      '/img/bg-showcase-2.jpg',
      '/img/bg-showcase-3.jpg',
-     './js/currency-converter.js',
+     '/img/favicon.png',  
+     '/img/testimonials-1.jpg',
+     '/img/testimonials-2.jpg',
+     '/img/testimonials-3.jpg',
      './vendor/jquery/jquery.min.js',
      './vendor/bootstrap/js/bootstrap.bundle.min.js',
-     './js/currency-converter.js',
 
      
      
